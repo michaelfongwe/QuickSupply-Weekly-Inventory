@@ -75,15 +75,6 @@ SQL_DATABASE=Project102
 python main.py
 ```
 
-**⚠️ IMPORTANT: Never commit your `.env` file to GitHub!**
-
-Add this to your `.gitignore`:
-```
-.env
-__pycache__/
-*.pyc
-venv/
-```
 
 **Data flows into PostgreSQL → Connect Power BI → Done.**
 
@@ -99,35 +90,3 @@ venv/
 
 ---
 
-**⭐ Star this repo if you find it valuable!**
-```
-
----
-
-## 🔐 CRITICAL: Secure Your .env File
-
-**Create a `.gitignore` file** in your project root with this content:
-```
-# Environment variables (NEVER COMMIT)
-.env
-
-# Python
-__pycache__/
-*.py[cod]
-*$py.class
-*.so
-.Python
-venv/
-env/
-ENV/
-
-# VS Code
-.vscode/
-
-# Database
-*.db
-*.sqlite3
-
-# OS
-.DS_Store
-Thumbs.db
