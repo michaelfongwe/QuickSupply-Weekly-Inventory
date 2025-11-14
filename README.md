@@ -62,14 +62,27 @@ cd QuickSupply-Weekly-Inventory
 python -m venv venv && venv\Scripts\activate
 pip install -r requirements.txt
 
-# 2. Configure .env
-Kobo_username=your_username
-kobo_password=your_password
+# 2. Configure .env (create this file in project root)
+Kobo_username=your_kobo_username
+kobo_password=your_kobo_password
 SQL_Host=localhost
+SQL_Port=5432
+SQL_Username=postgres
+SQL_password=your_postgres_password
 SQL_DATABASE=Project102
 
 # 3. Run
 python main.py
+```
+
+**⚠️ IMPORTANT: Never commit your `.env` file to GitHub!**
+
+Add this to your `.gitignore`:
+```
+.env
+__pycache__/
+*.pyc
+venv/
 ```
 
 **Data flows into PostgreSQL → Connect Power BI → Done.**
@@ -86,37 +99,35 @@ python main.py
 
 ---
 
-## 🎯 Key Features
-
-✅ **Dynamic column mapping** — No manual renaming ever  
-✅ **PostgreSQL-ready** — Clean schema design  
-✅ **Production-grade** — Automated, logged, error-handled  
-✅ **Scalable** — Works for 5 or 500 branches  
-✅ **Secure** — Environment variables, no hardcoded credentials  
-
----
-
-## 📈 What's Next
-
-- 🤖 Demand forecasting (Prophet/ARIMA)
-- 📧 Automated stockout alerts
-- 🔄 Apache Airflow scheduling
-- ⭐ ML-based supplier scoring
-
----
-
-## 🏆 Why This Matters
-
-This isn't just a script — it's a **complete analytical system** that replaces manual processes with intelligent automation. Built with senior-level data engineering practices, it demonstrates:
-
-✔️ API integration & authentication  
-✔️ ETL pipeline design  
-✔️ Database architecture  
-✔️ Business intelligence  
-✔️ Production-ready code  
-
-**Result:** A portfolio piece that shows you can build end-to-end solutions that drive real business value.
-
----
-
 **⭐ Star this repo if you find it valuable!**
+```
+
+---
+
+## 🔐 CRITICAL: Secure Your .env File
+
+**Create a `.gitignore` file** in your project root with this content:
+```
+# Environment variables (NEVER COMMIT)
+.env
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+venv/
+env/
+ENV/
+
+# VS Code
+.vscode/
+
+# Database
+*.db
+*.sqlite3
+
+# OS
+.DS_Store
+Thumbs.db
