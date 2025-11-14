@@ -1,113 +1,79 @@
-
-
 # **QuickSupply — Weekly Inventory Tracking & Demand Monitoring System**
 
 ## 🔥 **Project Overview**
 
-QuickSupply Distributors Ltd is a multi-branch supplier of essential consumer goods across key cities including Buea, Limbe, Garoua, Edea, Mamfe, and Yaounde. The company faced recurring stockouts, prolonged overstocking, and inconsistent inventory movement due to manual tracking and limited visibility across branches.
-To resolve this, I designed an automated, end-to-end weekly inventory data pipeline that collects, cleans, structures, and analyzes product demand from all locations. This system provides real-time insights that support smarter procurement, stock distribution, and supplier management decisions.
+QuickSupply Distributors Ltd manages multi-location FMCG distribution where inconsistent stock movement, frequent stockouts, and lack of visibility were disrupting operations. This project delivers an automated, scalable weekly inventory system—capturing field data, transforming it, storing it centrally, and turning it into actionable insights. The solution enables data‑driven decisions on stocking, demand patterns, and supplier performance.
 
 ---
 
 ## 💼 **Problem Statement**
 
-QuickSupply struggled with fragmented inventory tracking processes, leading to operational inefficiencies. Demand varies significantly across locations, some products frequently run out while others remain unsold for weeks, and unreliable suppliers create unpredictable delivery cycles.
-The lack of a unified data system made it difficult for management to understand weekly stock behavior, identify trends, or act proactively. This project resolves these challenges by delivering a fully automated inventory intelligence system.
+* Inventory demand varies significantly by location.
+* Chronic stockouts on key items while others remain overstocked.
+* Supplier delays create unreliable replenishment cycles.
+* No unified view of weekly inventory movement across branches.
+* Manual processes slow decision-making and reduce operational efficiency.
 
 ---
 
 ## 🎯 **Project Objectives**
 
-* Implement structured weekly data collection using **KoboToolbox** mobile forms.
-* Standardize and clean submissions from multiple branches to ensure consistent reporting.
-* Build a production-ready **Python ETL pipeline** to ingest, map, transform, and load data.
-* Store cleaned data in **PostgreSQL** using a dedicated schema and optimized table design.
-* Develop interactive **Power BI dashboards** to visualize stock movement and branch performance.
-* Provide insights that guide stock redistribution, replenishment strategies, and supplier evaluation.
-* Enable the company to transition from reactive decision-making to **data-driven inventory management**.
+* Automate weekly data collection via KoboToolbox.
+* Standardize submissions from all branches into clean, unified datasets.
+* Build a Python ETL pipeline for ingestion, transformation, and loading.
+* Store cleaned data in PostgreSQL (schema: `quicksupply`).
+* Develop Power BI dashboards for demand, performance, and supplier reliability.
+* Deliver insights to guide stock distribution and strategic procurement.
 
 ---
 
 ## 🛠️ **End-to-End Architecture**
 
-1. **Data Entry:** Weekly reports submitted by officers through KoboToolbox mobile/online forms.
-2. **API Ingestion:**
-
-   * Secure access to Kobo REST API
-   * Fetch live form structure and submission data
-3. **Python ETL Pipeline:**
-
-   * Retrieve Kobo XML metadata
-   * Map XML names → auto-generated DataColumnNames
-   * Clean, standardize, and sanitize column names
-   * Handle duplicates and formatting issues
-4. **Database Loading:**
-
-   * Insert cleaned data into **PostgreSQL**
-   * Schema: `quicksupply`
-   * Table: `weekly_inventory`
-5. **Analytics Layer:**
-
-   * Power BI connected directly to PostgreSQL
-   * Automated refresh ensures up-to-date insights
-6. **Outputs:**
-
-   * Product demand patterns
-   * Stock movement analysis
-   * Location performance
-   * Supplier delivery reliability
-   * Slow-moving and fast-moving product identification
+1. Field officers submit weekly forms via KoboToolbox.
+2. Data pulled programmatically through the REST API.
+3. Python ETL processes: structure fetch → XML mapping → renaming → cleaning.
+4. Data loaded into PostgreSQL table `weekly_inventory`.
+5. Power BI connects live to PostgreSQL for automated insights.
+6. Outputs include demand trends, stock movement, slow movers, and supplier metrics.
 
 ---
 
 ## 🧩 **Tech Stack**
 
 * **Python:** Pandas, Requests, SQLAlchemy, dotenv
-* **KoboToolbox API** for structured data collection
-* **PostgreSQL** for relational storage and analytics modeling
-* **Power BI Service** for interactive dashboards and decision support
-* **Git & GitHub** for version control
-* **VS Code** as primary development environment
-* **Data engineering practices:** Cleaning, transformation, schema standardization, ETL automation
+* **KoboToolbox API**
+* **PostgreSQL**
+* **Power BI Service**
+* **Git & GitHub**
+* **VS Code**
+* **Data Modeling & Schema Standardization**
 
 ---
 
-## 🧪 **Features of the Python ETL Pipeline**
+## 🧪 **Python ETL Pipeline Features**
 
-* Secure authentication using **environment variables**
-* Automatic extraction of Kobo form structure for column mapping
-* Intelligent parsing of XML names, labels, and autonames
-* Robust column-cleaning for PostgreSQL compatibility
-* Automatic handling of duplicate column names
-* Full console logging for monitoring ETL behavior
-* Loads data into a production-ready SQL schema
-* Modular and easily extendable for automation via **cron, Airflow, or GitHub Actions**
+* Secure authentication via `.env` variables.
+* Intelligent mapping of raw Kobo XML → human-readable columns.
+* Automatic column cleaning for database compatibility.
+* Deduplication and validation mechanisms.
+* Fully logged pipeline execution.
+* Structured for automation (cron, Airflow, GitHub Actions).
 
 ---
 
 ## 🚀 **Power BI Dashboard**
 
-The Power BI dashboard transforms raw operational data into actionable intelligence:
-
-* Weekly stock movement and branch-level inventory trends
-* Fast-moving vs slow-moving product classification
-* City-specific demand variations
-* Supplier delivery patterns and performance
-* Early warnings for potential stockouts
-* Clean visual storytelling for strategic and operational decisions
-
-This dashboard is optimized for **Power BI Service**, enabling scheduled refresh, sharing, and enterprise-grade reporting.
+Provides a clear view of weekly inventory trends, fast vs slow movers, supplier reliability, branch-level demand variations, and signals early warnings for potential stockouts. Designed for executives and operations managers.
 
 ---
 
-## 🧠 **Key Insights This Project Enables**
+## 🧠 **Key Insights Enabled**
 
-* Improved stock reallocation between branches
-* Identification of consistently underperforming or non-moving items
-* Real-time monitoring of demand fluctuations
-* Stronger supplier negotiations backed by performance data
-* Reduced stockouts, shrinkage, and overstocking costs
-* More efficient procurement cycles through data-driven forecasting
+* Optimal redistribution of stock across locations.
+* Detection of underperforming or obsolete products.
+* Clear understanding of supply–demand gaps.
+* Stronger procurement and supplier management.
+* Predictive insights enabling proactive restocking.
 
 ---
 
@@ -115,21 +81,17 @@ This dashboard is optimized for **Power BI Service**, enabling scheduled refresh
 
 ```
 QuickSupply-Weekly-Inventory/
-│── main.py
-│── requirements.txt
-│── README.md
-│── .env                  # (excluded from Git)
-│── data/                 # optional raw/processed files
-│── scripts/              # additional ETL or support scripts
-│── powerbi/              # dashboard files
-│── docs/                 # architecture diagrams, notes
+│
+├── main.py                     # ETL pipeline
+├── requirements.txt
+├── README.md
+├── .env.example
+├── /sql                        # PostgreSQL schema & table scripts
+├── /notebooks                  # Exploratory analysis
+└── /dashboard                  # Power BI report files
 ```
 
----
-
-## 🔐 **Environment Variables**
-
-Create a `.env` file with the following keys:
+## 🔐 Environment Variables
 
 ```
 Kobo_username=
@@ -141,63 +103,40 @@ SQL_password=
 SQL_DATABASE=
 ```
 
----
+## ▶️ How to Run the Project
 
-## 📜 **How to Run the Project**
+1. **Clone the repo**
 
-### 1. Clone the repository
+   ```bash
+   ```
 
-```bash
-git clone https://github.com/<your-username>/QuickSupply-Weekly-Inventory.git
+git clone <repo-url>
 cd QuickSupply-Weekly-Inventory
-```
 
-### 2. Create a virtual environment
-
+````
+2. **Create virtual environment**
 ```bash
 python -m venv venv
 source venv/bin/activate   # macOS/Linux
-venv\Scripts\activate      # Windows
-```
+venv\Scripts\activate     # Windows
+````
 
-### 3. Install requirements
+3. **Install requirements**
 
-```bash
+   ```bash
+   ```
+
 pip install -r requirements.txt
-```
 
-### 4. Configure environment variables
-
-Add the `.env` file at the project root.
-
-### 5. Run the ETL pipeline
-
+````
+4. **Configure `.env` file** using the variables above.
+5. **Run the ETL pipeline**
 ```bash
 python main.py
-```
+````
 
-### 6. Connect Power BI
+6. **Connect Power BI to PostgreSQL** → select *PostgreSQL connector*, enter host, port, username, password, and choose table `quicksupply.weekly_inventory`.
 
-Use PostgreSQL connection details to connect the dashboard directly to the `weekly_inventory` table.
+## 🏁 Conclusion
 
----
-
-## 📈 **Future Enhancements**
-
-* Automate pipeline scheduling with **Airflow** or **GitHub Actions**
-* Implement forecasting models (Prophet, ARIMA, ML) for demand prediction
-* Build a supplier reliability scoring system
-* Integrate anomaly detection for unusual stock movement
-* Add Power BI alerts for critical thresholds or stockouts
-
----
-
-## 🏁 **Conclusion**
-
-This project delivers a complete, scalable, and production-ready inventory intelligence system for QuickSupply.
-By automating data collection, integrating robust ETL processes, and enabling advanced analytics, it empowers leadership with real-time visibility, reduces stock inefficiencies, and supports data-driven operational excellence.
-The architecture and codebase demonstrate end-to-end mastery in data engineering, data analytics, and applied data science — ready for real-world deployment.
-
----
-
-
+QuickSupply’s Weekly Inventory System demonstrates a clean, automated, and scalable analytics pipeline that integrates field data collection, Python ETL engineering, cloud‑ready PostgreSQL storage, and business‑focused Power BI insights. The project showcases strong competencies across data engineering, analytics, and dashboard development—positioning this solution as both production‑ready and impactful for data‑driven decision‑making.
